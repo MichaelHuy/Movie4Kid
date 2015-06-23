@@ -13,4 +13,6 @@ FFK
         alert("Please check network or turn on 3G");
         $log.info('Search error');
       });
+    
+    
 })
