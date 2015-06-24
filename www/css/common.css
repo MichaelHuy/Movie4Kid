@@ -17,8 +17,14 @@ a {
 .tabs {
     background-color: #df1f1f;
 }
-ion-tabs.tabs-color-active-positive .tab-item.tab-item-active {
+ion-tabs.tabs-color-active-positive .tab-item {
   color: white;
 }
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active {
+  color: rgb(36, 13, 244);
+}
 
+.bar-stable .button.button-clear {
+  color: white;
 
+}

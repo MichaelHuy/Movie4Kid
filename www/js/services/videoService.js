@@ -89,6 +89,7 @@ FFK.service('VideosService', ['$window', '$rootScope', '$log', function ($window
   };
 
   this.launchPlayer = function (id, title) {
+      console.log(id);
     youtube.player.loadVideoById(id);
     youtube.videoId = id;
     youtube.videoTitle = title;

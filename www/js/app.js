@@ -8,6 +8,13 @@
 var FFK = angular.module('FFK', ['ionic','ngCordova']);
 
 FFK.run(function($ionicPlatform) {
+    
+    var tag = document.createElement('script');
+  tag.src = "http://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,8 +28,8 @@ FFK.run(function($ionicPlatform) {
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
-
+.config(function($httpProvider,$stateProvider, $urlRouterProvider) {
+delete $httpProvider.defaults.headers.common['X-Requested-With'];
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
@@ -48,6 +55,16 @@ FFK.run(function($ionicPlatform) {
     }
   })
 
+  .state('tab.car-detail', {
+      url: '/cars/:carId',
+      views: {
+        'tab-cars': {
+          templateUrl: 'views/tab-item-details.html',
+          controller: 'VideosController'
+        }
+      }
+  })
+  
   .state('tab.movies', {
       url: '/movies',
       views: {
