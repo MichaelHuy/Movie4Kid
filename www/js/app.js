@@ -5,15 +5,15 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var FFK = angular.module('FFK', ['ionic','ngCordova']);
+var FFK = angular.module('FFK', ['ionic']);
 
 FFK.run(function($ionicPlatform) {
     
-//    var tag = document.createElement('script');
-//  //tag.src = "http://www.youtube.com/iframe_api";
-//  tag.src = "http://www.youtube.com/player_api";
-//  var firstScriptTag = document.getElementsByTagName('script')[0];
-//  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    var tag = document.createElement('script');
+  //tag.src = "http://www.youtube.com/iframe_api";
+  tag.src = "http://www.youtube.com/player_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     
     
   $ionicPlatform.ready(function() {
@@ -30,8 +30,8 @@ FFK.run(function($ionicPlatform) {
 })
 
 .config(function($httpProvider,$stateProvider, $urlRouterProvider, $sceDelegateProvider) {
-   // delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    $sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
+    delete $httpProvider.defaults.headers.common['X-Requested-With'];
+    //$sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
   // Ionic uses AngularUI Router which uses the concept of states
   // Learn more here: https://github.com/angular-ui/ui-router
   // Set up the various states which the app can be in.
