@@ -1,12 +1,17 @@
-FFK.controller('VideosController', function ($scope, $http, $log, VideosService, $stateParams) {
+FFK.controller('VideosController', function ($scope, $http, $log, VideosService, $stateParams, $sce) {
 
-    init();
-VideosService.loadPlayer();
+   // init();
+    console.log("VideosController");
+     $scope.yt = { 
+      videoid: "M7lc1UVf-VE",
+    };
+    
+//VideosService.loadPlayer();
     function init() {
       $scope.youtube = VideosService.getYoutube();
-      $scope.results = VideosService.getResults();
-      $scope.upcoming = VideosService.getUpcoming();
-      $scope.history = VideosService.getHistory();
+//      $scope.results = VideosService.getResults();
+//      $scope.upcoming = VideosService.getUpcoming();
+//      $scope.history = VideosService.getHistory();
       $scope.playlist = true;
     }
 
