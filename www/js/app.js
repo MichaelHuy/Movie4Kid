@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var FFK = angular.module('FFK', ['ionic']);
+var FFK = angular.module('FFK', ['ionic', 'ngSanitize']);
 
 FFK.run(function($ionicPlatform) {
     
@@ -46,6 +46,15 @@ FFK.run(function($ionicPlatform) {
   })
 
   // Each tab has its own nav history stack:
+  .state('tab.menucars', {
+    url: '/menucars',
+    views: {
+      'tab-cars': {
+        templateUrl: 'views/tab-menu-cars.html',
+        controller: 'MenuCarsCtrl'
+      }
+    }
+  })
 
   .state('tab.cars', {
     url: '/cars',
@@ -67,6 +76,16 @@ FFK.run(function($ionicPlatform) {
       }
   })
   
+
+    .state('tab.menumovies', {
+      url: '/menumovies',
+      views: {
+        'tab-movies': {
+          templateUrl: 'views/tab-menu-movies.html',
+          controller: 'MenuMoviesCtrl'
+        }
+      }
+    })
   .state('tab.movies', {
       url: '/movies',
       views: {
@@ -97,6 +116,6 @@ FFK.run(function($ionicPlatform) {
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/cars');
+  $urlRouterProvider.otherwise('/tab/menucars');
 
 });
