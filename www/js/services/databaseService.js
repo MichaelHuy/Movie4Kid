@@ -7,7 +7,7 @@ FFK
         },
         getMovieMenu : function () {
           var url = baseUrl + "/api/movieplaylist";
-          $http.get(url);
+          return $http.get(url);
         },
         getFavoriteMovie : function () {
           return $http.get(baseUrl+'/api/favoritevideo');

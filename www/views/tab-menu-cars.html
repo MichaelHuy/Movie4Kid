@@ -1,22 +1,17 @@
 <ion-view view-title="Cars">
   <ion-content class="padding">
       
-    <div id="results">
-      <div class="video" data-ng-repeat="video in results">
-<!--        <img class="video-image" data-ng-src="{{ video.thumbnail }}">
-        <p class="video-title">{{ video.title }}</p>
-        <p class="video-author">{{ video.author }}</p>
-        <p class="video-description">{{ video.description }}</p>-->
-          
-          
-              <a class="item item-thumbnail-left" href="#/tab/cars/{{video.id}}">
-              <img ng-src="{{ video.thumbnail }}">
-              <h2>{{video.title}}</h2>
-              <p>{{video.description}}</p>
-            </a>
-          
+      <div class="video" data-ng-repeat="item in items">
+          <a class="item item-thumbnail-left" ng-click="clickOnItemOfMenu(item)">
+              <image ng-src="{{ item.firstImage }}">
+                <div class="overlay">
+                    <div class="text-overlay" style="margin-top:11px">{{item.numberVideo}}</div>
+                    <div class="text-overlay" style="margin-top: 0px;">Video</div>
+                    <div class="text-overlay ion-android-menu" style="font-size:19px;margin-top:-5px"></div>
+                </div>
+              <div class="item-text-wrap wrap">{{item.name}}</div>
+          </a>          
       </div>
-    </div>
 
   </ion-content>
 </ion-view>

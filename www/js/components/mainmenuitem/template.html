@@ -1,23 +1,9 @@
-<div class="list">
-
-    <a class="item item-thumbnail-left" href="#">
-      <img src="http://ionicframework.com/img/docs/siamese-dream.jpg">
-      <h2>Pretty Hate Machine</h2>
-      <p>150K views</p>
-    </a>
-
-    <div class="item tabs tabs-secondary tabs-icon-left">
-      <a class="tab-item" href="#">
-        <i class="icon ion-thumbsup"></i>
-        Like
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-chatbox"></i>
-        Comment
-      </a>
-      <a class="tab-item" href="#">
-        <i class="icon ion-share"></i>
-        Share
-      </a>
-    </div>
-</div>
+<a class="item item-thumbnail-left" href="#/tab/menucars/{{item.playlistId}}">
+    <image ng-src="{{ item.firstImage }}">
+      <div class="overlay">
+          <div>100</div>
+          <div>Video</div>
+          <div class="ion-ios-list"></div>
+      </div>
+    <h2>{{item.name}}</h2>
+</a>

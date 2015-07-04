@@ -9,8 +9,8 @@
         <p class="video-description">{{ video.description }}</p>-->
           
           
-              <a class="item item-thumbnail-left" href="#/tab/cars/{{video.id}}">
-              <img ng-src="{{ video.thumbnail }}">
+              <a class="item item-thumbnail-left" href="#/tab/cars/{{video.resourceId.videoId}}">
+              <img ng-src="{{ video.thumbnails.default.url }}">
               <h2>{{video.title}}</h2>
               <p>{{video.description}}</p>
             </a>

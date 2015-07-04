@@ -1,10 +1,10 @@
-FFK.controller('VideosController', function ($scope, $http, $log, VideosService, $stateParams, $sce) {
+FFK.controller('VideoPlayCtrl', function ($scope, $http, $log, VideosService, $stateParams, $sce) {
 
     $scope.trustSrc = function(src) {
       return $sce.trustAsResourceUrl(src);
     }
     var baseURL = "http://www.youtube.com/embed/";
-   $scope.currentURL = baseURL + $stateParams.carId + "?autoplay=1&origin=http://example.com";
+   $scope.currentURL = baseURL + $stateParams.movieId + "?autoplay=1&origin=http://example.com";
 
 //     function launch (id, title) {
 //       VideosService.launchPlayer(id, title);

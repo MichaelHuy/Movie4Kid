@@ -66,18 +66,16 @@ FFK.run(function($ionicPlatform) {
     }
   })
 
-  .state('tab.car-detail', {
-      url: '/cars/:carId',
+  .state('tab.carvideoplay', {
+      url: '/cars/:movieId',
       views: {
         'tab-cars': {
-          templateUrl: 'views/tab-item-details.html',
-          controller: 'VideosController'
+          templateUrl: 'views/videoplay.html',
+          controller: 'VideoPlayCtrl'
         }
       }
   })
-  
-
-    .state('tab.menumovies', {
+  .state('tab.menumovies', {
       url: '/menumovies',
       views: {
         'tab-movies': {
@@ -95,6 +93,16 @@ FFK.run(function($ionicPlatform) {
         }
       }
     })
+    .state('tab.videoplay', {
+      url: '/movies/:movieId',
+      views: {
+        'tab-movies': {
+          templateUrl: 'views/videoplay.html',
+          controller: 'VideoPlayCtrl'
+        }
+      }
+    })
+
     .state('tab.favorites', {
       url: '/favorites',
       views: {

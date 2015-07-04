@@ -1,9 +1,9 @@
 FFK
-.controller('MenuMoviesCtrl', function($scope, $http, $log, $ionicLoading, DatabaseService) {
+.controller('MenuMoviesCtrl', function($rootScope, $scope, $http, $log, $ionicLoading, DatabaseService, $state) {
     $ionicLoading.show();
     DatabaseService.getMovieMenu().success( function (data) {
-        $scope.menus = data;
-          $log.info(JSON.stringify($scope.menus));
+        $scope.items = data;
+          $log.info(JSON.stringify($scope.item));
           $ionicLoading.hide();
       })
       .error( function () {
@@ -11,6 +11,9 @@ FFK
         alert("Please check network or turn on 3G");
         $log.info('Search error');
       });
-    
+    $scope.clickOnItemOfMenu = function(item) {
+      $rootScope.currentMoviePlaylist = item.playlistId;
+      $state.go('tab.movies');
+    }
     
 })

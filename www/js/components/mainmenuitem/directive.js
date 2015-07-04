@@ -1,9 +1,9 @@
-FFK.directive('funitem', ['$timeout', function (timeout) {
+FFK.directive('menuItem', ['$timeout', function (timeout) {
         return {
             restrict: "AE",
             templateUrl: 'js/components/funitem/template.html',
             scope:{
-               funs:"="
+               item:"="
             },
             link: function (scope, elem, attrs) {
             }

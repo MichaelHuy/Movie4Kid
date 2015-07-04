@@ -1,12 +1,12 @@
 FFK
-.controller('MoviesCtrl', function($scope,$http, $log, $ionicLoading, SearchService, VideosService) {
+.controller('MoviesCtrl', function($rootScope, $scope,$state, $log, $ionicLoading, SearchService, VideosService, $location) {
   
     $ionicLoading.show();
-    SearchService.getListSearch("doraemon+playlist")
-          .success( function (data) {
-        var results = VideosService.listResults(data);
-        $scope.results = results;
-          $log.info(JSON.stringify(results));
+    SearchService.getListVideoByPlaylistId($rootScope.currentMoviePlaylist)
+          .success(function (data) {
+        //var results = VideosService.listResults(data);
+        $scope.results = VideosService.listResults(data);
+          $log.info(JSON.stringify($scope.results));
           $ionicLoading.hide();
       })
       .error( function () {
@@ -15,5 +15,13 @@ FFK
         $log.info('Search error');
       });
     
-    
+    // $scope.clickViewVideo = function (video) {
+    //   var absUrl = $location.absUrl();
+    //   var videoId = video.resourceId.videoId;
+    //   $log.info(absUrl + "and video is : "+videoId);
+    //   var toUrl = absUrl+"/"+videoId;
+    //   $log.info(toUrl);
+    //   $location.path(toUrl);
+
+    // }
 })

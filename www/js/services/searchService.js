@@ -24,13 +24,14 @@ FFK
         },
 
         getListVideoByPlaylistId : function (textToSearch) {
-          return $http.get('https://www.googleapis.com/youtube/v3/playlists', {
+          console.log(textToSearch);
+          return $http.get('https://www.googleapis.com/youtube/v3/playlistItems', {
             params: {
-              part: 'snippet',
-              channelId: 'UC_x5XG1OV2P6uZZ5FSM9Ttw',
-              maxResults: '8',
-              fields: 'items/id,items/snippet/title,items/snippet/description,items/snippet/thumbnails/default,items/snippet/channelTitle',
-              key:key
+              key: key,
+              part: 'id,snippet',
+              type: 'video',
+              playlistId: textToSearch,
+              maxResults: '50'
             }
           });
         }

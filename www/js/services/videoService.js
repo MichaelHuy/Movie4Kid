@@ -98,12 +98,12 @@ FFK.service('VideosService', ['$window', '$rootScope', '$log', function ($window
 
   this.listResults = function (data) {
     results.length = 0;
-    for (var i = data.items.length - 1; i >= 0; i--) {
+    for (var i = 0; i < data.items.length; i++) {
       results.push({
-        id: data.items[i].id.videoId,
+        resourceId: data.items[i].snippet.resourceId,
         title: data.items[i].snippet.title,
         description: data.items[i].snippet.description,
-        thumbnail: data.items[i].snippet.thumbnails.default.url,
+        thumbnails: data.items[i].snippet.thumbnails,
         author: data.items[i].snippet.channelTitle
       });
     }

@@ -1,9 +1,10 @@
 FFK
-.controller('MenuCarsCtrl', function($scope, $http, $log, $ionicLoading, DatabaseService) {
+.controller('MenuCarsCtrl', function($rootScope, $scope, $state, $log, $ionicLoading, DatabaseService) {
+
     $ionicLoading.show();
     DatabaseService.getCarMenu().success( function (data) {
-        $scope.menus = data;
-          $log.info(JSON.stringify($scope.menus));
+        $scope.items = data;
+          $log.info(JSON.stringify($scope.items));
           $ionicLoading.hide();
       })
       .error( function () {
@@ -11,6 +12,10 @@ FFK
         alert("Please check network or turn on 3G");
         $log.info('Search error');
       });
-    
+
+    $scope.clickOnItemOfMenu = function(item) {
+      $rootScope.currentCarPlaylist = item.playlistId;
+      $state.go('tab.cars');
+    }
     
 })
