@@ -2,15 +2,15 @@
   <ion-content class="padding">
       
     <div id="results">
-      <div class="video" data-ng-repeat="video in results" data-ng-click="openVideo(video.id, video.title)">
+      <div class="video" data-ng-repeat="video in results">
 <!--        <img class="video-image" data-ng-src="{{ video.thumbnail }}">
         <p class="video-title">{{ video.title }}</p>
         <p class="video-author">{{ video.author }}</p>
         <p class="video-description">{{ video.description }}</p>-->
           
           
-              <a class="item item-thumbnail-left" href="#/tab/cars/{{video.id}}">
-              <img ng-src="{{ video.thumbnail }}">
+              <a class="item item-thumbnail-left" href="#/tab/cars/{{video.resourceId.videoId}}">
+              <img ng-src="{{ video.thumbnails.default.url }}">
               <h2>{{video.title}}</h2>
               <p>{{video.description}}</p>
             </a>

@@ -1,1 +1,26 @@
 /* Empty. Add your own CSS if you like */
+/* common*/
+.item-thumbnail-left > img:first-child
+ {
+
+ 	  max-width: 127px;
+ }
+.item-thumbnail-left{
+  padding-left: 151px;
+}
+.overlay {
+  position: absolute;
+  width: 64px;
+  height: 80px;
+  left: 74px;
+  top: 10px;
+  background-color: black;
+  opacity: 0.7;
+}
+.text-overlay {
+  text-align: center;
+  opacity: 1;
+  color: white;
+  margin-top: 6px;
+  font-size: 13px;
+}

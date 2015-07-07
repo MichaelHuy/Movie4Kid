@@ -1,7 +1,8 @@
 FFK
-.controller('CarsCtrl', function($scope, $http, $log, $ionicLoading, SearchService, VideosService) {
+.controller('CarsCtrl', function($rootScope, $scope, $http, $log, $ionicLoading, SearchService, VideosService) {
     $ionicLoading.show();
-    SearchService.getListSearch("chung tu don")
+
+    SearchService.getListVideoByPlaylistId($rootScope.currentCarPlaylist)
           .success( function (data) {
         var results = VideosService.listResults(data);
         $scope.results = results;
