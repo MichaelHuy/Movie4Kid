@@ -24,3 +24,10 @@
   margin-top: 6px;
   font-size: 13px;
 }
+.favorite-button {
+
+  position: absolute;
+  right: 0px;
+  z-index: 9999;
+  top: 62px;
+}

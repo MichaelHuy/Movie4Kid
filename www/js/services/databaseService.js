@@ -10,7 +10,13 @@ FFK
           return $http.get(url);
         },
         getFavoriteMovie : function () {
-          return $http.get(baseUrl+'/api/favoritevideo');
+          return $http.get(baseUrl+'/api/favorites');
+        },
+        addItemToFavorite: function(item) {
+          return $http.post(baseUrl+'/api/favorites', item);
+        },
+        deleteItemFavoriteById : function(id) {
+          return $http.delete(baseUrl+'/api/favorites/'+ id);
         }
     }
 })
