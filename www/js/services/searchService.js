@@ -23,7 +23,7 @@ FFK
           $http.get(urlSample);
         },
 
-        getListVideoByPlaylistId : function (textToSearch) {
+        getListVideoByPlaylistId : function (textToSearch, pageToken) {
           console.log(textToSearch);
           return $http.get('https://www.googleapis.com/youtube/v3/playlistItems', {
             params: {
@@ -31,7 +31,8 @@ FFK
               part: 'id,snippet',
               type: 'video',
               playlistId: textToSearch,
-              maxResults: '50'
+              maxResults: '50',
+              pageToken: pageToken
             }
           });
         }
