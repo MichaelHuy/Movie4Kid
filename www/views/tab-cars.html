@@ -9,11 +9,15 @@
         <p class="video-description">{{ video.description }}</p>-->
           
           
-              <a class="item item-thumbnail-left" href="#/tab/cars/{{video.resourceId.videoId}}">
+            <a class="item item-thumbnail-left" href="#/tab/cars/{{video.resourceId.videoId}}">
               <img ng-src="{{ video.thumbnails.default.url }}">
               <h2>{{video.title}}</h2>
               <p>{{video.description}}</p>
+              <a class="favorite-button">
+                Add to favorite
+              </a>
             </a>
+
           
       </div>
     </div>

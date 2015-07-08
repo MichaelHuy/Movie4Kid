@@ -8,11 +8,12 @@ FFK
       })
       .error( function () {
         $ionicLoading.hide();
-        alert("Please check network or turn on 3G");
+        //alert("Please check network or turn on 3G");
         $log.info('Search error');
       });
     $scope.clickOnItemOfMenu = function(item) {
       $rootScope.currentMoviePlaylist = item.playlistId;
+      $rootScope.titleHeader= item.name;
       $state.go('tab.movies');
     }
     

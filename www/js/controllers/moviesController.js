@@ -1,6 +1,6 @@
 FFK
 .controller('MoviesCtrl', function($rootScope, $scope,$state, $log, $ionicLoading, SearchService, VideosService, $location) {
-  
+    $scope.titleHeader = $rootScope.titleHeader;
     $ionicLoading.show();
     SearchService.getListVideoByPlaylistId($rootScope.currentMoviePlaylist)
           .success(function (data) {
@@ -11,17 +11,14 @@ FFK
       })
       .error( function () {
         $ionicLoading.hide();
-        alert("Please check network or turn on 3G");
+        //alert("Please check network or turn on 3G");
         $log.info('Search error');
       });
     
-    // $scope.clickViewVideo = function (video) {
-    //   var absUrl = $location.absUrl();
-    //   var videoId = video.resourceId.videoId;
-    //   $log.info(absUrl + "and video is : "+videoId);
-    //   var toUrl = absUrl+"/"+videoId;
-    //   $log.info(toUrl);
-    //   $location.path(toUrl);
+    $scope.viewMoviePlayList = function (playlist) {
+      var videoId = playlist.resourceId.videoId;
+      $rootScope.currentVideoPlayTitle = playlist.title;
+      $location.path("/tab/movies/"+videoId);
 
-    // }
+    }
 })
