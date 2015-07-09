@@ -1,9 +1,9 @@
 FFK
 .controller('MoviesCtrl', function($rootScope, $scope,$state, $log, $ionicLoading, SearchService, VideosService, $location) {
     $scope.titleHeader = $rootScope.titleHeader;
-    $ionicLoading.show();
+    //$ionicLoading.show();
     $scope.currentPageToken = "";
-    SearchService.getListVideoByPlaylistId($rootScope.currentMoviePlaylist, $scope.currentPageToken)
+    SearchService.getListVideoByPlaylistId($rootScope.currentMoviePlaylist)
           .success(function (data) {
           $scope.currentPageToken = data.nextPageToken;
           $scope.results = VideosService.listResults(data);
@@ -24,18 +24,26 @@ FFK
     }
 
   $scope.loadMore = function(){
-
-     SearchService.getListVideoByPlaylistId($rootScope.currentMoviePlaylist, $scope.currentPageToken)
+    console.log("start load more items");
+    if ($scope.currentPageToken) {
+      SearchService.getMoreListVideoByPlaylistId($rootScope.currentMoviePlaylist, $scope.currentPageToken)
           .success(function (data) {
           $scope.currentPageToken = data.nextPageToken;
           var newResults = VideosService.listResults(data);
           $scope.results = $scope.results.concat(newResults);
+          $scope.$broadcast('scroll.infiniteScrollComplete');
       })
       .error( function () {
         //alert("Please check network or turn on 3G");
         $log.info('Search error');
+        $scope.$broadcast('scroll.infiniteScrollComplete');
       });
+    } else {
+      console.log("load all video of ID");
 
+    }
+
+    
   };
 
 })

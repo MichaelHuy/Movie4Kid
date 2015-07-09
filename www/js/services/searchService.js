@@ -22,8 +22,20 @@ FFK
                         "&key=AIzaSyBxIZ0ZS2zjicXRsxNFnqY0wVRFhwl7FhQ";
           $http.get(urlSample);
         },
+        getListVideoByPlaylistId : function (textToSearch) {
+          console.log(textToSearch);
+          return $http.get('https://www.googleapis.com/youtube/v3/playlistItems', {
+            params: {
+              key: key,
+              part: 'id,snippet',
+              type: 'video',
+              playlistId: textToSearch,
+              maxResults: '50'
+            }
+          });
+        },
 
-        getListVideoByPlaylistId : function (textToSearch, pageToken) {
+        getMoreListVideoByPlaylistId : function (textToSearch, pageToken) {
           console.log(textToSearch);
           return $http.get('https://www.googleapis.com/youtube/v3/playlistItems', {
             params: {

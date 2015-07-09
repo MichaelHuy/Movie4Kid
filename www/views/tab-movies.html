@@ -1,7 +1,7 @@
 <ion-view view-title={{titleHeader}}>
-  <ion-content class="padding">
+  <ion-content class="has-footer">
       
-    <div id="results">
+<!--     <div id="results">
       <div class="video" data-ng-repeat="playlist in results">
             <a class="item item-thumbnail-left" ng-click="viewMoviePlayList(playlist)">
               <img ng-src="{{ playlist.thumbnails.default.url }}">
@@ -9,8 +9,18 @@
               <p>{{playlist.description}}</p>
             </a>          
       </div>
-    </div>
+    </div> -->
+    <ion-list>
+      <div data-ng-repeat="playlist in results">
+            <a class="item item-thumbnail-left" ng-click="viewMoviePlayList(playlist)">
+              <img ng-src="{{ playlist.thumbnails.default.url }}">
+              <h2>{{playlist.title}}</h2>
+              <p>{{playlist.description}}</p>
+            </a>
+      </div>
+    </ion-list>
+
     <!-- Load more item-->
-    <ion-infinite-scroll on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>                                                                                                                                            
+    <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>                                                                                                                                            
   </ion-content>
 </ion-view>
