@@ -3,12 +3,18 @@ FFK
     $scope.titleHeader = $rootScope.titleHeader;
     //$ionicLoading.show();
     $scope.currentPageToken = "";
+    $scope.hasMoreData = false;
     SearchService.getListVideoByPlaylistId($rootScope.currentMoviePlaylist)
           .success(function (data) {
+          
           $scope.currentPageToken = data.nextPageToken;
           $scope.results = VideosService.listResults(data);
           $log.info(JSON.stringify($scope.results));
           $ionicLoading.hide();
+
+          if ($scope.currentPageToken) {
+            $scope.hasMoreData = true;
+          }
       })
       .error( function () {
         $ionicLoading.hide();
@@ -16,21 +22,25 @@ FFK
         $log.info('Search error');
       });
     
-    $scope.viewMoviePlayList = function (playlist) {
-      var videoId = playlist.resourceId.videoId;
-      $rootScope.currentVideoPlayTitle = playlist.title;
-      $location.path("/tab/movies/"+videoId);
 
-    }
 
   $scope.loadMore = function(){
-    console.log("start load more items");
+    console.log("into load more items");
     if ($scope.currentPageToken) {
+      console.log("start load more items with currentPageToken is: " + $scope.currentPageToken);
       SearchService.getMoreListVideoByPlaylistId($rootScope.currentMoviePlaylist, $scope.currentPageToken)
           .success(function (data) {
-          $scope.currentPageToken = data.nextPageToken;
+            console.log("data.nextPageToken in loadmore is : "+data.nextPageToken);
+            if (!data.nextPageToken) {
+              $scope.hasMoreData = false;
+              $scope.currentPageToken = "";            
+            } else {
+              $scope.currentPageToken = data.nextPageToken;
+            }
+          
           var newResults = VideosService.listResults(data);
           $scope.results = $scope.results.concat(newResults);
+          newResults = [];
           $scope.$broadcast('scroll.infiniteScrollComplete');
       })
       .error( function () {
@@ -40,10 +50,19 @@ FFK
       });
     } else {
       console.log("load all video of ID");
-
+      $scope.$broadcast('scroll.infiniteScrollComplete');
     }
 
     
   };
+
+
+    $scope.viewMoviePlayList = function (playlist) {
+      var videoId = playlist.resourceId.videoId;
+      $rootScope.currentVideoPlayTitle = playlist.title;
+      $location.path("/tab/movies/"+videoId);
+
+    }
+
 
 })
