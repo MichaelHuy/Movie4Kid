@@ -5,15 +5,15 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-var FFK = angular.module('FFK', ['ionic', 'ngSanitize']);
+var FFK = angular.module('FFK', ['ionic', 'ngSanitize', 'ngCordova']);
 
 FFK.run(function($ionicPlatform) {
     
-    var tag = document.createElement('script');
-  //tag.src = "http://www.youtube.com/iframe_api";
-  tag.src = "http://www.youtube.com/player_api";
-  var firstScriptTag = document.getElementsByTagName('script')[0];
-  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  //   var tag = document.createElement('script');
+  // //tag.src = "http://www.youtube.com/iframe_api";
+  // tag.src = "http://www.youtube.com/player_api";
+  // var firstScriptTag = document.getElementsByTagName('script')[0];
+  // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     
     
   $ionicPlatform.ready(function() {
