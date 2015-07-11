@@ -30,7 +30,7 @@ FFK
               part: 'id,snippet',
               type: 'video',
               playlistId: textToSearch,
-              maxResults: '10'
+              maxResults: '25'
             }
           });
         },
@@ -43,7 +43,7 @@ FFK
               part: 'id,snippet',
               type: 'video',
               playlistId: textToSearch,
-              maxResults: '10',
+              maxResults: '25',
               pageToken: pageToken
             }
           });

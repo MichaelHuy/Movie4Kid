@@ -14,8 +14,10 @@ FFK
       });
 
     $scope.clickOnItemOfMenu = function(item) {
-      $rootScope.currentCarPlaylist = item.playlistId;
+      $rootScope.currentMoviePlaylist = item.playlistId;
+      $rootScope.titleHeader= item.name;
       $state.go('tab.cars');
     }
+
     
 })
