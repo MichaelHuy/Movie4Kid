@@ -31,3 +31,21 @@
   z-index: 9999;
   top: 62px;
 }
+.tabs {
+	background-color: #ac0809 !important;
+}
+
+.tabs-icon-top > .tabs .tab-item, .tabs-icon-top.tabs .tab-item, .tabs-icon-bottom > .tabs .tab-item, .tabs-icon-bottom.tabs .tab-item {
+	margin-top: -2px;
+	border-style: solid;
+	border-width: 3px 0 0 0;
+	/*border-color: #ef4e3a; */
+	color: white;
+	opacity: 0.7;
+}
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+	border-color: white!important;
+	color:rgba(26, 26, 193, 0.88) !important;
+	opacity: 1 !important;
+    font-size: 19px;
+}

@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 var FFK = angular.module('FFK', ['ionic', 'ngSanitize', 'ngCordova']);
 
-FFK.run(function($ionicPlatform) {
+FFK.run(function($ionicPlatform, $cordovaDevice, $cordovaGoogleAds ) {
     
   //   var tag = document.createElement('script');
   // //tag.src = "http://www.youtube.com/iframe_api";
@@ -27,15 +27,79 @@ FFK.run(function($ionicPlatform) {
       StatusBar.styleLightContent();
     }
   });
+
+
+        var admobid = {
+            banner: 'ca-app-pub-7472000144720385/3168889950',
+            interstitial: 'ca-app-pub-7472000144720385/9075822752'
+        };
+
+        document.addEventListener('deviceready', function () {
+            // if ($cordovaDevice) {
+            //     vm.cordova = $cordovaDevice.getCordova();
+            //     vm.model = $cordovaDevice.getModel();
+            //     vm.platform = $cordovaDevice.getPlatform();
+            //     vm.version = $cordovaDevice.getVersion();
+            // } else {
+            //     vm.deviceSupport = 'No device support!';
+            // }
+
+            if ($cordovaGoogleAds) {
+                setupAds();
+            } else {
+                //vm.adSupport = 'No ad support';
+            }
+
+            //$scope.$apply();
+        });
+
+        function setupAds() {
+            //vm.adSupport = 'Ads are supported';
+
+            try {
+                $cordovaGoogleAds.createBanner({
+                    adId: admobid.banner,
+                    position: $window.AdMob.AD_POSITION.BOTTOM_CENTER,
+                    isTesting: true,
+                    autoShow: true
+                });
+
+                $cordovaGoogleAds.prepareInterstitial({
+                    adId: admobid.interstitial,
+                    isTesting: true,
+                    autoShow: false
+                });
+            } catch (e) {
+                alert(e);
+            }
+        }
+
+        function showFullAd() {
+            try {
+                if (true) {
+                    $cordovaGoogleAds.showInterstitial()
+                        .then(function () {
+                            $cordovaGoogleAds.prepareInterstitial({
+                                adId: admobid.interstitial,
+                                autoShow: false
+                            });
+                        });
+                } else {
+                    alert('No Ads!');
+                }
+            } catch (e) {
+                alert(e);
+            }
+        }
+
 })
 
-.config(function($httpProvider,$stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+.config(function($httpProvider,$stateProvider, $urlRouterProvider, $sceDelegateProvider, $ionicConfigProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
-    //$sceDelegateProvider.resourceUrlWhitelist(['self', new RegExp('^(http[s]?):\/\/(w{3}.)?youtube\.com/.+$')]);
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
+
+    
+    $ionicConfigProvider.tabs.position('bottom'); // other values: top
+    
   $stateProvider
 
   // setup an abstract state for the tabs directive
