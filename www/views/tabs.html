@@ -4,7 +4,11 @@ Each tab's child <ion-nav-view> directive will have its own
 navigation history that also transitions its views in and out.
 -->
 <ion-tabs class="tabs-icon-top tabs-color-active-positive">
-
+  <!-- Kid Chanel Tab -->
+  <ion-tab title="Kid Learning" icon-off="ion-disc" icon-on="ion-disc" href="#/tab/kidchannels">
+    <ion-nav-view name="tab-channels"></ion-nav-view>
+  </ion-tab>
+    
   <!-- Cars Tab -->
   <ion-tab title="Cars" icon-off="ion-android-car" icon-on="ion-android-car" href="#/tab/menucars">
     <ion-nav-view name="tab-cars"></ion-nav-view>
@@ -13,11 +17,6 @@ navigation history that also transitions its views in and out.
   <!-- Movies Tab -->
   <ion-tab title="Movies" icon-off="ion-ios-film" icon-on="ion-ios-film" href="#/tab/menumovies">
     <ion-nav-view name="tab-movies"></ion-nav-view>
-  </ion-tab>
-    
-  <!-- Movies Tab -->
-  <ion-tab title="Favorites" icon-off="ion-star" icon-on="ion-star" href="#/tab/favorites">
-    <ion-nav-view name="tab-favorites"></ion-nav-view>
   </ion-tab>
 
   <!-- Account Tab -->

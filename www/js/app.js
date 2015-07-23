@@ -108,7 +108,36 @@ FFK.run(function($ionicPlatform, $cordovaDevice, $cordovaGoogleAds ) {
     abstract: true,
     templateUrl: "views/tabs.html"
   })
-
+  //kid channel and learning
+ .state('tab.menukidchannels', {
+      url: '/kidchannels',
+      views: {
+        'tab-channels': {
+          templateUrl: 'views/tab-menu-channels.html',
+          controller: 'MenuKidChannelsCtrl'
+        }
+      }
+    })
+  .state('tab.channels', {
+      url: '/channels',
+      views: {
+        'tab-channels': {
+          templateUrl: 'views/tab-channels.html',
+          controller: 'KidChannelsCtrl'
+        }
+      }
+    })
+    .state('tab.channelplay', {
+      url: '/channels/:movieId',
+      views: {
+        'tab-movies': {
+          templateUrl: 'views/videoplay.html',
+          controller: 'VideoPlayCtrl'
+        }
+      }
+    })
+  
+  
   // Each tab has its own nav history stack:
   .state('tab.menucars', {
     url: '/menucars',
@@ -188,6 +217,6 @@ FFK.run(function($ionicPlatform, $cordovaDevice, $cordovaGoogleAds ) {
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/menucars');
+  $urlRouterProvider.otherwise('/tab/kidchannels');
 
 });

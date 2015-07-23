@@ -2,6 +2,9 @@ FFK
 .factory('DatabaseService', function($http, $log) {
   var baseUrl = "http://ffkserver.mybluemix.net";
     return {
+        getKidChannelsMenu : function () {
+          return $http.get(baseUrl+'/api/kidchannelsplaylist');
+        },
         getCarMenu : function () {
           return $http.get(baseUrl+'/api/carplaylist');
         },
