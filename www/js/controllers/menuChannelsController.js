@@ -12,8 +12,8 @@ FFK
         $log.info('Search error');
       });
     $scope.clickOnItemOfMenu = function(item) {
-      $rootScope.currentChannelPlaylist = item.playlistId;
-      $rootScope.titleHeader= item.name;
+      $rootScope.currentKidChannelPlaylist = item.playlistId;
+      $rootScope.titleKidChannel= item.name;
       $state.go('tab.channels');
     }
     

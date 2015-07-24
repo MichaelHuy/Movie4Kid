@@ -1,7 +1,12 @@
 <ion-view view-title={{currentVideoPlayTitle}}>
   <ion-content class="padding">
-     <iframe id="ytplayer" type="text/html" width="100%" height="390"
+<!--     <iframe id="ytplayer" type="text/html" width="100%" height="390"
   ng-src="{{trustSrc(currentURL)}}"
-  frameborder="0" allowfullscreen/>
+  frameborder="0" allowfullscreen/>-->
+      
+          	<youtube id="{{current}}" width="{{width}}" height="{{height}}"></youtube>
+
+	<div id="codeblock"><code>{{code()}}</code></div>
+      
     </ion-content>
 </ion-view>

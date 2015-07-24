@@ -1,6 +1,6 @@
 FFK
 .controller('KidChannelsCtrl', function($rootScope, $timeout, $scope,$state, $log, $ionicLoading, SearchService, VideosService, $location) {
-    $scope.titleHeader = $rootScope.titleHeader;
+    $scope.titleHeader = $rootScope.titleKidChannel;
     //$ionicLoading.show();
     $scope.currentPageToken = "";
     $scope.hasMoreData = true;
@@ -9,7 +9,7 @@ FFK
 
 
   $scope.loadMore = function(){
-      SearchService.getMoreListVideoByPlaylistId($rootScope.currentChannelPlaylist, $scope.currentPageToken)
+      SearchService.getMoreListVideoByPlaylistId($rootScope.currentKidChannelPlaylist, $scope.currentPageToken)
           .success(function (data) {
             if (!data.nextPageToken) {
               $scope.hasMoreData = false;
@@ -31,7 +31,7 @@ FFK
 
     $scope.viewMoviePlayList = function (playlist) {
       var videoId = playlist.resourceId.videoId;
-      $rootScope.currentVideoPlayTitle = playlist.title;
+      $rootScope.currentVideoPlayKidChannelTitle = playlist.title;
       $location.path("/tab/channels/"+videoId);
 
     }
