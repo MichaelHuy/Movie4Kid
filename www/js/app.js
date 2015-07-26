@@ -9,13 +9,6 @@ var FFK = angular.module('FFK', ['ionic', 'ngSanitize', 'ngCordova']);
 
 FFK.run(function($ionicPlatform, $cordovaDevice, $cordovaGoogleAds ) {
     
-  //   var tag = document.createElement('script');
-  // //tag.src = "http://www.youtube.com/iframe_api";
-  // tag.src = "http://www.youtube.com/player_api";
-  // var firstScriptTag = document.getElementsByTagName('script')[0];
-  // firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    
-    
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -35,15 +28,6 @@ FFK.run(function($ionicPlatform, $cordovaDevice, $cordovaGoogleAds ) {
         };
 
         document.addEventListener('deviceready', function () {
-            // if ($cordovaDevice) {
-            //     vm.cordova = $cordovaDevice.getCordova();
-            //     vm.model = $cordovaDevice.getModel();
-            //     vm.platform = $cordovaDevice.getPlatform();
-            //     vm.version = $cordovaDevice.getVersion();
-            // } else {
-            //     vm.deviceSupport = 'No device support!';
-            // }
-
             if ($cordovaGoogleAds) {
                 setupAds();
             } else {
@@ -130,7 +114,7 @@ FFK.run(function($ionicPlatform, $cordovaDevice, $cordovaGoogleAds ) {
     .state('tab.channelplay', {
       url: '/channels/:movieId',
       views: {
-        'tab-movies': {
+        'tab-channels': {
           templateUrl: 'views/videoplay.html',
           controller: 'VideoPlayCtrl'
         }

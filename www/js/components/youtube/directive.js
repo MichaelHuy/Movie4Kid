@@ -1,5 +1,26 @@
-FFK
-.directive('youtube', ['youtubeEmbed', '$window', function(youtubeEmbed, $window){
+FFK.constant('YT_event', {
+  STOP:            0, 
+  PLAY:            1,
+  PAUSE:           2
+})
+.directive('myYoutube', function($sce) {
+  return {
+    restrict: 'EA',
+    scope: { code:'=' },
+    replace: true,
+    template: '<div style="height:350px;"><iframe style="overflow:hidden;height:100%;width:100%" width="100%" height="100%" src="{{url}}" frameborder="0" allowfullscreen></iframe></div>',
+    link: function (scope) {
+        console.log('here');
+        scope.$watch('code', function (newVal) {
+           if (newVal) {
+               scope.url = $sce.trustAsResourceUrl("http://www.youtube.com/embed/" + newVal);
+           }
+        });
+    }
+  };
+})
+
+.directive('youtubetem', ['youtubeEmbed', '$window', function(youtubeEmbed, $window){
 	return {
 		restrict: 'E',
 		template: '<div id="player"></div>',
@@ -33,31 +54,31 @@ FFK
 		}
 	};
 }])
-.directive('youtubetem', function($window) {
+.directive('youtube', function($window, YT_event) {
   return {
     restrict: "E",
 
-     scope: {
+    scope: {
       height: "@",
       width: "@",
       videoid: "@"
     },
 
-     template: '<div></div>',
+    template: '<div></div>',
 
-     link: function(scope, element) {
+    link: function(scope, element) {
       var tag = document.createElement('script');
       tag.src = "https://www.youtube.com/iframe_api";
       var firstScriptTag = document.getElementsByTagName('script')[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-       var player;
+      var player;
 
-       $window.onYouTubeIframeAPIReady = function() {
+      $window.onYouTubeIframeAPIReady = function() {
 
-         player = new YT.Player(element.children()[0], {
+        player = new YT.Player(element.children()[0], {
           playerVars: {
-            autoplay: 1,
+            autoplay: 0,
             html5: 1,
             theme: "light",
             modesbranding: 0,
@@ -67,29 +88,45 @@ FFK
             controls: 1
           },
 
-           height: scope.height,
+          height: scope.height,
           width: scope.width,
           videoId: scope.videoid, 
         });
       }
 
-       scope.$watch('videoid', function(newValue, oldValue) {
+      scope.$watch('videoid', function(newValue, oldValue) {
+          console.log(newValue +"and oldvalue: " + oldValue);
+        if (newValue == oldValue) {
+          return;
+        }
+         // player.destroy();
+
+        player.cueVideoById(scope.videoid);
+
+      }); 
+
+      scope.$watch('height + width', function(newValue, oldValue) {
         if (newValue == oldValue) {
           return;
         }
 
-         player.cueVideoById(scope.videoid);
+        player.setSize(scope.width, scope.height);
 
-       }); 
+      });
 
-       scope.$watch('height + width', function(newValue, oldValue) {
-        if (newValue == oldValue) {
-          return;
-        }
+      scope.$on(YT_event.STOP, function () {
+        player.seekTo(0);
+        player.stopVideo();
+      });
 
-         player.setSize(scope.width, scope.height);
+      scope.$on(YT_event.PLAY, function () {
+        player.playVideo();
+      }); 
 
-       });
+      scope.$on(YT_event.PAUSE, function () {
+        player.pauseVideo();
+      }); 
+
     }  
   };
 });

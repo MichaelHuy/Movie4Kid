@@ -1,4 +1,4 @@
-FFK.controller('VideoPlayCtrl', function ($rootScope, $scope, $http, $log, VideosService, $stateParams, $sce) {
+FFK.controller('VideoPlayCtrl', function ($rootScope, $scope, VideosService, $stateParams) {
 
 //    $scope.trustSrc = function(src) {
 //      return $sce.trustAsResourceUrl(src);
@@ -9,16 +9,9 @@ FFK.controller('VideoPlayCtrl', function ($rootScope, $scope, $http, $log, Video
 
    $scope.currentVideoPlayTitle = $rootScope.currentVideoPlayKidChannelTitleTitle;
     
-    $scope.current = $stateParams.movieId;
-	$scope.width = 480;
-	$scope.height = 360;
+    $scope.code = $stateParams.movieId;
 
-
-
-	$scope.code = function(){
-		return '<youtube id="' + $scope.current + '" width="' + $scope.width + '" height="' + $scope.height + '"></youtube>';
-	}
     
-               
+    
 
 });
