@@ -1,41 +1,30 @@
 FFK
-.controller('MenuKidChannelsCtrl', function($rootScope, $scope, $http, $log, $ionicLoading, DatabaseService, $state, $cordovaNetwork) {
-    
-    var type = $cordovaNetwork.getNetwork();
+    .controller('MenuKidChannelsCtrl', function ($rootScope, $scope, $http, $log, $ionicLoading, DatabaseService, $state) {
 
-    var isOnline = $cordovaNetwork.isOnline();
+        $scope.$watch('online', function (newStatus) {
+            if (!newStatus) {
+                alert("Currently, Network disconnected!");
+            }            
+        });
 
-    alert(type);
-    alert(isOnline);
-
-    // listen for Online event
-    $rootScope.$on('$cordovaNetwork:online', function(event, networkState){
-      var onlineState = networkState;
-    })
-
-    // listen for Offline event
-    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState){
-      var offlineState = networkState;
-    })
-    
-    if (isOnline) {
+        if ($rootScope.online) {
             $ionicLoading.show();
-    DatabaseService.getKidChannelsMenu().success( function (data) {
-        $scope.items = data;
-          $log.info(JSON.stringify($scope.item));
-          $ionicLoading.hide();
-      })
-      .error( function () {
-        $ionicLoading.hide();
-        //alert("Please check network or turn on 3G");
-        $log.info('Search error');
-      });        
-    }
-    
-    $scope.clickOnItemOfMenu = function(item) {
-      $rootScope.currentKidChannelPlaylist = item.playlistId;
-      $rootScope.titleKidChannel= item.name;
-      $state.go('tab.channels');
-    }
-    
-})
+            DatabaseService.getKidChannelsMenu().success(function (data) {
+                    $scope.items = data;
+                    $log.info(JSON.stringify($scope.item));
+                    $ionicLoading.hide();
+                })
+                .error(function () {
+                    $ionicLoading.hide();
+                    //alert("Please check network or turn on 3G");
+                    $log.info('Search error');
+                });
+        } else {}
+
+        $scope.clickOnItemOfMenu = function (item) {
+            $rootScope.currentKidChannelPlaylist = item.playlistId;
+            $rootScope.titleKidChannel = item.name;
+            $state.go('tab.channels');
+        }
+
+    })

@@ -7,7 +7,7 @@
 // 'starter.controllers' is found in controllers.js
 var FFK = angular.module('FFK', ['ionic', 'ngSanitize', 'ngCordova']);
 
-FFK.run(function($ionicPlatform, $cordovaDevice, $cordovaGoogleAds ) {
+FFK.run(function($ionicPlatform, $cordovaGoogleAds, $rootScope, $window ) {
     
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -21,6 +21,18 @@ FFK.run(function($ionicPlatform, $cordovaDevice, $cordovaGoogleAds ) {
     }
   });
 
+     $rootScope.online = navigator.onLine;
+      $window.addEventListener("offline", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = false;
+        });
+      }, false);
+      $window.addEventListener("online", function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = true;
+        });
+      }, false);
+    
 
         var admobid = {
             banner: 'ca-app-pub-7472000144720385/3168889950',
