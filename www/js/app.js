@@ -19,6 +19,32 @@ FFK.run(function($ionicPlatform, $cordovaGoogleAds, $rootScope, $window ) {
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+     
+      
+      if(window.plugins && window.plugins.AdMob) {
+            var admob_key = device.platform == "Android" ? 
+            "ca-app-pub-7472000144720385/3168889950" : "ca-app-pub-7472000144720385/3168889950";
+            var admob = window.plugins.AdMob;
+            admob.createBannerView( 
+                {
+                    'publisherId': admob_key,
+                    'adSize': admob.AD_SIZE.BANNER,
+                    'bannerAtTop': false
+                }, 
+                function() {
+                    admob.requestAd(
+                        { 'isTesting': false }, 
+                        function() {
+                            admob.showAd(true);
+                        }, 
+                        function() { console.log('failed to request ad'); }
+                    );
+                }, 
+                function() { console.log('failed to create banner view'); }
+            );
+        }
+      
+      
   });
 
      $rootScope.online = navigator.onLine;
@@ -34,59 +60,59 @@ FFK.run(function($ionicPlatform, $cordovaGoogleAds, $rootScope, $window ) {
       }, false);
     
 
-        var admobid = {
-            banner: 'ca-app-pub-7472000144720385/3168889950',
-            interstitial: 'ca-app-pub-7472000144720385/9075822752'
-        };
-
-        document.addEventListener('deviceready', function () {
-            if ($cordovaGoogleAds) {
-                setupAds();
-            } else {
-                //vm.adSupport = 'No ad support';
-            }
-
-            //$scope.$apply();
-        });
-
-        function setupAds() {
-            //vm.adSupport = 'Ads are supported';
-
-            try {
-                $cordovaGoogleAds.createBanner({
-                    adId: admobid.banner,
-                    position: $window.AdMob.AD_POSITION.BOTTOM_CENTER,
-                    isTesting: true,
-                    autoShow: true
-                });
-
-                $cordovaGoogleAds.prepareInterstitial({
-                    adId: admobid.interstitial,
-                    isTesting: true,
-                    autoShow: false
-                });
-            } catch (e) {
-                alert(e);
-            }
-        }
-
-        function showFullAd() {
-            try {
-                if (true) {
-                    $cordovaGoogleAds.showInterstitial()
-                        .then(function () {
-                            $cordovaGoogleAds.prepareInterstitial({
-                                adId: admobid.interstitial,
-                                autoShow: false
-                            });
-                        });
-                } else {
-                    alert('No Ads!');
-                }
-            } catch (e) {
-                alert(e);
-            }
-        }
+//        var admobid = {
+//            banner: 'ca-app-pub-7472000144720385/3168889950',
+//            interstitial: 'ca-app-pub-7472000144720385/9075822752'
+//        };
+//
+//        document.addEventListener('deviceready', function () {
+//            if ($cordovaGoogleAds) {
+//                setupAds();
+//            } else {
+//                //vm.adSupport = 'No ad support';
+//            }
+//
+//            //$scope.$apply();
+//        });
+//
+//        function setupAds() {
+//            //vm.adSupport = 'Ads are supported';
+//
+//            try {
+//                $cordovaGoogleAds.createBanner({
+//                    adId: admobid.banner,
+//                    position: $window.AdMob.AD_POSITION.BOTTOM_CENTER,
+//                    isTesting: true,
+//                    autoShow: false
+//                });
+//
+//                $cordovaGoogleAds.prepareInterstitial({
+//                    adId: admobid.interstitial,
+//                    isTesting: true,
+//                    autoShow: false
+//                });
+//            } catch (e) {
+//                alert(e);
+//            }
+//        }
+//
+//        function showFullAd() {
+//            try {
+//                if (true) {
+//                    $cordovaGoogleAds.showInterstitial()
+//                        .then(function () {
+//                            $cordovaGoogleAds.prepareInterstitial({
+//                                adId: admobid.interstitial,
+//                                autoShow: false
+//                            });
+//                        });
+//                } else {
+//                    alert('No Ads!');
+//                }
+//            } catch (e) {
+//                alert(e);
+//            }
+//        }
 
 })
 
